@@ -1,2 +1,2 @@
-# ArduinoSNES2USB
-USB adapter for dual SNES controllers using Seeeduino Xiao
+# 2SNES2USB
+USB HID adapter for dual SNES controllers using Seeeduino Xiao
