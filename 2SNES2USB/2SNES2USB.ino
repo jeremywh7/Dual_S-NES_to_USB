@@ -6,6 +6,19 @@
   
   Adapted from GadgetReboot's SNES_To_USB
 
+
+  NES controller pinout:
+               _________
+             /          |
+            /        O  | Ground
+           /            |
+     +VCC  |  O      O  | Clock
+           |            |
+     N.C.  |  O      O  | Latch
+           |            |
+     N.C.  |  O      O  | Data Out (To NES)
+           |____________|
+
   SNES controller pinout:
                ________________
               | 0 0 0 0 | 0 0 0 ) 
@@ -33,16 +46,14 @@ const int RSHOULDER_BUTTON       = 11;
 
 const int shiftDelay  = 12;  // clock/latch pulse width in microseconds (SNES spec = 12)
 
-// SNES Pins
-const int snesClock      = 7;      // SNES controllers shared clock pin
-const int snesLatch      = 8;      // SNES controllers shared latch pin
-const int snesData       = 5;      // SNES controller 1 data pin
-const int snes2Data      = 6;      // SNES controller 2 data pin
+// NES/SNES controller pins to Arduino (board specific!)
+const int snesClock      = 11;    // controller shared clock pin = CPX pin 11 is A2
+const int snesLatch      = 12;    // controller shared latch pin = CPX pin 12 is A3
+const int snesData       = 8;     // controller 1 data pin = CPX pin 8 is A6
+const int snes2Data      = 7;     // controller 2 data pin = CPX pin 7 is A7
 
 int snesRegister;            // SNES controller 1 button states. 0=pressed 1=released
 int snes2Register;           // SNES controller 2 button states. 0=pressed 1=released
- 
-
 
 void setup(){
   // configure pins
@@ -67,9 +78,8 @@ void loop(){
   writeSNES2();
 }
 
-
-// read the 12 controller buttons into the snesRegister
-// SNES controller button states are asynchronously loaded into the shift register while snesLatch is high
+// Read the 12 SNES controller buttons into snesRegister
+// States are asynchronously loaded into the shift register while snesLatch is high
 // When snesLatch goes low, the first data bit is shifted to snesData
 // Button data is shifted to snesData on each low to high transition of snesClock
 void readSNES(){
