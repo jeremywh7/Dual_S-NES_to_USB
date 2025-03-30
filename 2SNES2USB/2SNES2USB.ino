@@ -1,11 +1,9 @@
 #include "HID-Project.h"
 
 /*
-  Dual SNES to USB adapter
-  Developed for and tested on Seeduino Xiao SAMD21
-  
+  Dual NES/SNES to USB adapter
+  Developed by RevHarryPowell (2SNES2USB) for, and tested on, Seeduino Xiao SAMD21
   Adapted from GadgetReboot's SNES_To_USB
-
 
   NES controller pinout:
                _________
@@ -32,17 +30,17 @@
 
 // bit positions of each controller button in the status register
 const int B_BUTTON               = 0;
-const int Y_BUTTON               = 1;
-const int SELECT_BUTTON          = 2;
-const int START_BUTTON           = 3;
-const int UP_BUTTON              = 4;
-const int DOWN_BUTTON            = 5;
-const int LEFT_BUTTON            = 6;
-const int RIGHT_BUTTON           = 7;
-const int A_BUTTON               = 8;
-const int X_BUTTON               = 9;
-const int LSHOULDER_BUTTON       = 10;
-const int RSHOULDER_BUTTON       = 11;
+// const int Y_BUTTON               = 1; // comment out SNES-only buttons
+const int SELECT_BUTTON          = 1; // 2;
+const int START_BUTTON           = 2; // 3;
+const int UP_BUTTON              = 3; // 4;
+const int DOWN_BUTTON            = 4; // 5;
+const int LEFT_BUTTON            = 5; // 6;
+const int RIGHT_BUTTON           = 6; // 7;
+const int A_BUTTON               = 7; // 8;
+// const int X_BUTTON               = 9;
+// const int LSHOULDER_BUTTON       = 10;
+// const int RSHOULDER_BUTTON       = 11;
 
 const int shiftDelay  = 12;  // clock/latch pulse width in microseconds (SNES spec = 12)
 
